@@ -1,40 +1,86 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-const PokemonInfo = ({ pokemons }) => {
+const PokemonInfo = ({}) => {
   const { id, info } = useParams();
-  const pokemon = pokemons.find((element) => element.id === Number(id) - 1);
-  const keys = Array.isArray(pokemon[info]) ? [] : Object.keys(pokemon[info]);
-  /* console.log(Object.keys(pokemon[info])); */
-  /* const keys = Object.keys(pokemon); */
+  const [item, setItem] = useState();
+  const [loading, setLoading] = useState(true);
+  /* const [keys, setKeys] = useState(null); */
+  let keys = null;
+  let check = true;
 
-  /* pokemon ? console.log(Object?.pokemon[info]) : console.log("nada"); */
+  const fetchData = (url) => {
+    axios
+      .get(url)
+      .then((res) => {
+        console.log(res.data);
+        setItem(res.data);
+      })
+      .catch((err) => console.log("Not working because: ", err));
+  };
+
+  useEffect(() => {
+    fetchData(`http://localhost:9000/pokemon/${id}/${info}`);
+  }, [info]);
+
+  useEffect(() => {
+    /* setLoading((prev) => !prev); */
+    if (check) {
+      check = false;
+    } else {
+      /* setLoading(!true); */
+    }
+  }, [item]);
+
   return (
     <div>
-      <h1>Name: {pokemon.name.english}</h1>
+      {loading ? (
+        <div>
+          <p>Loading...</p>
+          <Link to={`/pokemon/${id}/name`}>
+            <button>Name</button>
+          </Link>
+          <Link to={`/pokemon/${id}/type`}>
+            <button>Type</button>
+          </Link>
+          <Link to={`/pokemon/${id}/base`}>
+            <button>Base</button>
+          </Link>
+          <button onClick={() => setLoading((prev) => !prev)}>Loading</button>
+        </div>
+      ) : (
+        <div>
+          <div>
+            <h2>{info.charAt(0).toUpperCase() + info.slice(1)}:</h2>
+            {Array.isArray(item)
+              ? item?.map((element, index) => <h2 key={index}>{element}</h2>)
+              : ((keys = Object.keys(item)),
+                keys.map((element, index) => (
+                  <h2 key={index}>
+                    {element.charAt(0).toUpperCase() + element.slice(1)}:{" "}
+                    {item[element]}
+                  </h2>
+                )))}
 
-      <div>
-        <h2>{info.charAt(0).toUpperCase() + info.slice(1)}:</h2>
-        {Array.isArray(pokemon[info])
-          ? pokemon[info].map((item) => <h2>{item}</h2>)
-          : keys.map((item) => (
-              <h2>
-                {item.charAt(0).toUpperCase() + item.slice(1)}:{" "}
-                {pokemon[info][item]}
-              </h2>
-            ))}
-      </div>
-      <Link to={`/pokemon/${id}/name`}>
-        <button>Name</button>
-      </Link>
+            {/* {item?.map((element) => (
+              <h2>{element}</h2>
+            ))} */}
 
-      <Link to={`/pokemon/${id}/type`}>
-        <button>Type</button>
-      </Link>
-      <Link to={`/pokemon/${id}/base`}>
-        <button>Base</button>
-      </Link>
+            <p></p>
+          </div>
+          <Link to={`/pokemon/${id}/name`}>
+            <button>Name</button>
+          </Link>
+          <Link to={`/pokemon/${id}/type`}>
+            <button>Type</button>
+          </Link>
+          <Link to={`/pokemon/${id}/base`}>
+            <button>Base</button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
