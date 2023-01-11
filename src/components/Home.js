@@ -28,17 +28,17 @@ const Home = ({}) => {
     }
   };
 
-  /* const fetchPokemon = async () => {
+  const fetchPokemon = async () => {
     try {
-      const { pokemon, error } = await fetchData(
-        "http://localhost:9000/pokemon"
+      const { fetchedData, error } = await fetchData(
+        "http://localhost:9000/pokemons"
       );
       if (error) throw error;
-      setPokemons(pokemon);
+      setPokemons(fetchedData);
     } catch (error) {
       console.log(error);
     }
-  }; */
+  };
 
   const getRandom = (min, max) => {
     console.log("getrandom max", max);
@@ -63,8 +63,12 @@ const Home = ({}) => {
       .catch((err) => console.log("Not working because: ", err));
   };
 
+  // useEffect(() => {
+  //   fetchData("http://localhost:9000/pokemons");
+  // }, []);
+
   useEffect(() => {
-    fetchData("http://localhost:9000/pokemon");
+    fetchPokemon();
   }, []);
 
   useEffect(() => {
