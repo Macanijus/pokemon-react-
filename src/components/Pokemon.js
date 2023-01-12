@@ -31,11 +31,11 @@ const Pokemon = ({}) => {
   }, [pic]);
 
   return (
-    <div>
-      <div>
+    <div className="home">
+      <div className="pokemonsDisplay">
         {console.log(pokemon)}
         <h1>Name: {pokemon?.name.english}</h1>
-        <img width="200" height="200" src={pic} />
+        <img className="pic" src={pic} alt={pokemon?.name.english} />
         <h2>Attack: {pokemon?.base.Attack}</h2>
         <h2>HP: {pokemon?.base.HP}</h2>
         <h2>Defense: {pokemon?.base.Defense}</h2>
@@ -45,21 +45,21 @@ const Pokemon = ({}) => {
             <h2 key={index}>{item}</h2>
           ))}
         </div>
-        {console.log(
-          pic,
-          `https://pokeapi.co/api/v2/pokemon/${pokemon.name.english.toLowerCase()}`
-        )}
+        <div>
+          <Link to={`/pokemon/${id}/name`}>
+            <button className="pic">Name</button>
+          </Link>
 
-        <Link to={`/pokemon/${id}/name`}>
-          <button>Name</button>
-        </Link>
-
-        <Link to={`/pokemon/${id}/type`}>
-          <button>Type</button>
-        </Link>
-        <Link to={`/pokemon/${id}/base`}>
-          <button>Base</button>
-        </Link>
+          <Link to={`/pokemon/${id}/type`}>
+            <button className="pic">Type</button>
+          </Link>
+          <Link to={`/pokemon/${id}/base`}>
+            <button className="pic">Base</button>
+          </Link>
+          <Link to={`/`}>
+            <button className="pic">Back to all Pokemons</button>
+          </Link>
+        </div>
       </div>
     </div>
   );

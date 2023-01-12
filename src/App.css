@@ -3,3 +3,52 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.app {
+  background: #3b4cca;
+  color: white;
+}
+
+.pic {
+  background-color: #b3a125;
+  border: 5px solid #ffde00;
+  padding: 5px;
+  color: white;
+  font-size: medium;
+  font-weight: bold;
+  width: fit-content;
+  align-self: center;
+}
+
+.pokemonsDisplay {
+  padding: 10px;
+  margin: 10px;
+  border: 5px solid #b3a125;
+  background: #b46d03;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  text-align: center;
+}
+
+.home {
+  padding-top: 3%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.choose {
+  width: 100vw;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  margin: 10px;
+}
+
+button {
+  cursor: pointer;
+  margin: 3px;
+}

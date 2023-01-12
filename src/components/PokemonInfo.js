@@ -12,19 +12,7 @@ const PokemonInfo = ({}) => {
   console.log("first ", fetchedData);
 
   return (
-    <div>
-      {console.log(item)}
-      <div>
-        <Link to={`/pokemon/${id}/name`}>
-          <button>Name</button>
-        </Link>
-        <Link to={`/pokemon/${id}/type`}>
-          <button>Type</button>
-        </Link>
-        <Link to={`/pokemon/${id}/base`}>
-          <button>Base</button>
-        </Link>
-      </div>
+    <div className="pokemonsDisplay">
       <div>
         <div>
           <h2>{info.charAt(0).toUpperCase() + info.slice(1)}:</h2>
@@ -39,13 +27,19 @@ const PokemonInfo = ({}) => {
               )))}
         </div>
         <Link to={`/pokemon/${id}/name`}>
-          <button>Name</button>
+          <button className="pic">Name</button>
         </Link>
         <Link to={`/pokemon/${id}/type`}>
-          <button>Type</button>
+          <button className="pic">Type</button>
         </Link>
         <Link to={`/pokemon/${id}/base`}>
-          <button>Base</button>
+          <button className="pic">Base</button>
+        </Link>
+        <Link to={`/pokemon/${id}/`}>
+          <button className="pic">Back to Pokemon</button>
+        </Link>
+        <Link to={`/`}>
+          <button className="pic">Back to all Pokemons</button>
         </Link>
       </div>
     </div>
