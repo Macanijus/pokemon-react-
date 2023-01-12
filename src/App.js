@@ -26,7 +26,8 @@ function App() {
           path="/pokemon/:id"
           element={<Pokemon />}
           loader={async ({ params: { id } }) => {
-            return fetch(`http://localhost:9000/pokemons/${id}`);
+            const first = await fetch(`http://localhost:9000/pokemons/${id}`);
+            return first;
           }}
         />
         <Route
