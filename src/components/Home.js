@@ -32,7 +32,8 @@ const Home = ({}) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  let rando = pokemons[getRandom(1, pokemons.length)]._id;
+  // let rando = pokemons[getRandom(1, pokemons.length)]._id;
+  let rando = "63bd9a61762a44a121a037a7";
   // const getPoke = () => {
   //   rando = pokemons[getRandom(1, pokemons.length)];
   // };
@@ -60,9 +61,11 @@ const Home = ({}) => {
         <Link to={`/pokemon/${rando}`} style={{ textDecoration: "none" }}>
           <button className="pic">Gimme Random Poke</button>
         </Link>
+
         <button className="pic" onClick={handleOpen}>
           Languages
         </button>
+
         {open ? (
           <ul className="menu">
             <button className="pic" onClick={() => setLang("english")}>

@@ -16,7 +16,6 @@
   color: white;
   font-size: medium;
   font-weight: bold;
-  width: fit-content;
   align-self: center;
 }
 
@@ -51,4 +50,30 @@
 button {
   cursor: pointer;
   margin: 3px;
+}
+
+.versus {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.fightdiv {
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-items: center;
+  text-align: center;
+}
+
+.size {
+  width: 116px;
+  height: 116px;
+}
+
+.versustwo {
+  display: flex;
+  flex-direction: column;
 }
