@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import Pagination from "./Pagination";
 import "../App.css";
 
-const Home = ({}) => {
+const Home = ({ getRandom }) => {
   const [searchedPokemons, setSearchedPokemons] = useState([]);
   const firstRun = useRef(true);
   const [input, setInput] = useState("");
@@ -28,12 +28,12 @@ const Home = ({}) => {
     setCurrentPage(pageNumber);
   };
 
+
   const changeHandler = (e) => {
     setInput(e.target.value);
   };
 
   const findPokemon = () => {
-    console.log("pokemon ", pokemons);
     if (pokemons && input) {
       const result = input
         ? pokemons.filter((poke) =>
@@ -44,15 +44,7 @@ const Home = ({}) => {
     }
   };
 
-  const getRandom = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  };
-
-  // let rando = pokemons[getRandom(1, pokemons.length)]._id;
-  let rando = "63bd9a61762a44a121a037a7";
-  // const getPoke = () => {
-  //   rando = pokemons[getRandom(1, pokemons.length)];
-  // };
+  let rando = pokemons[getRandom(1, pokemons.length)]._id;
 
   useEffect(() => {
     findPokemon();
@@ -76,6 +68,7 @@ const Home = ({}) => {
             value={input}
           />
         </div>
+
         <Link to={`/pokemon/${rando}`} style={{ textDecoration: "none" }}>
           <button className="pic">Gimme Random Poke</button>
         </Link>
