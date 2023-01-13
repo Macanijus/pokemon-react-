@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import Pagination from "./Pagination";
+import "../App.css";
 
 const Home = ({}) => {
   const [searchedPokemons, setSearchedPokemons] = useState([]);
@@ -11,6 +13,20 @@ const Home = ({}) => {
   const pokemons = useLoaderData().pokemons;
 
   console.log(pokemons);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [articlesPerPage] = useState(18);
+
+  const indexOfLastArticle = currentPage * articlesPerPage;
+  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+  const currentArticles = pokemons.slice(
+    indexOfFirstArticle,
+    indexOfLastArticle
+  );
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   const changeHandler = (e) => {
     setInput(e.target.value);
@@ -47,17 +63,19 @@ const Home = ({}) => {
   };
 
   return (
-    <div className="home">
+    <div>
       <h1 className="choose">Choose your Fighter!</h1>
       <div className="choose">
-        <input
-          className="search-input"
-          type="text"
-          size="18"
-          placeholder="Search"
-          onChange={changeHandler}
-          value={input}
-        />
+        <div className="search">
+          <input
+            className="search-input"
+            type="text"
+            size="18"
+            placeholder="Search"
+            onChange={changeHandler}
+            value={input}
+          />
+        </div>
         <Link to={`/pokemon/${rando}`} style={{ textDecoration: "none" }}>
           <button className="pic">Gimme Random Poke</button>
         </Link>
@@ -83,31 +101,44 @@ const Home = ({}) => {
           </ul>
         ) : null}
       </div>
-
-      {searchedPokemons.length
-        ? searchedPokemons?.map((pokemon, index) => (
-            <div className="pokemonsDisplay">
-              <Link
-                key={index}
-                to={`/pokemon/${pokemon._id}`}
-                style={{ textDecoration: "none" }}
-              >
-                <h1>{pokemon.name.english}</h1>
-              </Link>
-            </div>
-          ))
-        : pokemons?.map((pokemon, index) => (
-            <div className="pokemonsDisplay">
-              {console.log(pokemon.name)}
-              <Link
-                key={index}
-                to={`/pokemon/${pokemon._id}`}
-                style={{ textDecoration: "none" }}
-              >
-                <h1>{pokemon.name[lang]}</h1>
-              </Link>
-            </div>
-          ))}
+      <div className="flex">
+        <div className="pokedex">
+          {searchedPokemons.length
+            ? searchedPokemons?.map((pokemon, index) => (
+                <div className="pokemonsDisplay">
+                  <Link
+                    key={index}
+                    to={`/pokemon/${pokemon._id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <h1>{pokemon.name.english}</h1>
+                  </Link>
+                </div>
+              ))
+            : currentArticles?.map((pokemon, index) => (
+                <div className="pokemonsDisplay">
+                  {console.log(pokemon.name)}
+                  <Link
+                    key={index}
+                    to={`/pokemon/${pokemon._id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <h1>{pokemon.name[lang]}</h1>
+                  </Link>
+                </div>
+              ))}
+        </div>
+      </div>
+      <div className="pagination">
+        <Pagination
+          /*         nPages={nPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage} */
+          articlesPerPage={articlesPerPage}
+          totalArticles={pokemons.length}
+          paginate={paginate}
+        />
+      </div>
     </div>
   );
 };

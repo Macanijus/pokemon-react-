@@ -12,7 +12,7 @@ const PokemonInfo = ({}) => {
   console.log("first ", fetchedData);
 
   return (
-    <div className="pokemonsDisplay">
+    <div className="card">
       <div>
         <div>
           <h2>{info.charAt(0).toUpperCase() + info.slice(1)}:</h2>
