@@ -28,6 +28,8 @@
   flex-wrap: wrap;
   flex-direction: column;
   text-align: center;
+  /* min-height: 40vh; */
+  min-width: 22vw;
 }
 
 .home {
@@ -76,4 +78,5 @@ button {
 .versustwo {
   display: flex;
   flex-direction: column;
+  min-width: 30vw;
 }

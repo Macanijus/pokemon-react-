@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 
-const Home = ({}) => {
+const Home = ({ getRandom }) => {
   const [searchedPokemons, setSearchedPokemons] = useState([]);
   const firstRun = useRef(true);
   const [input, setInput] = useState("");
@@ -10,14 +10,11 @@ const Home = ({}) => {
   let pic = null;
   const pokemons = useLoaderData().pokemons;
 
-  console.log(pokemons);
-
   const changeHandler = (e) => {
     setInput(e.target.value);
   };
 
   const findPokemon = () => {
-    console.log("pokemon ", pokemons);
     if (pokemons && input) {
       const result = input
         ? pokemons.filter((poke) =>
@@ -28,15 +25,7 @@ const Home = ({}) => {
     }
   };
 
-  const getRandom = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  };
-
-  // let rando = pokemons[getRandom(1, pokemons.length)]._id;
-  let rando = "63bd9a61762a44a121a037a7";
-  // const getPoke = () => {
-  //   rando = pokemons[getRandom(1, pokemons.length)];
-  // };
+  let rando = pokemons[getRandom(1, pokemons.length)]._id;
 
   useEffect(() => {
     findPokemon();
@@ -54,7 +43,7 @@ const Home = ({}) => {
           className="search-input"
           type="text"
           size="18"
-          placeholder="Search"
+          placeholder="Search (en only)"
           onChange={changeHandler}
           value={input}
         />
@@ -84,7 +73,7 @@ const Home = ({}) => {
         ) : null}
       </div>
 
-      {searchedPokemons.length
+      {searchedPokemons?.length
         ? searchedPokemons?.map((pokemon, index) => (
             <div className="pokemonsDisplay">
               <Link
@@ -92,13 +81,12 @@ const Home = ({}) => {
                 to={`/pokemon/${pokemon._id}`}
                 style={{ textDecoration: "none" }}
               >
-                <h1>{pokemon.name.english}</h1>
+                <h1>{pokemon.name[lang]}</h1>
               </Link>
             </div>
           ))
         : pokemons?.map((pokemon, index) => (
             <div className="pokemonsDisplay">
-              {console.log(pokemon.name)}
               <Link
                 key={index}
                 to={`/pokemon/${pokemon._id}`}
