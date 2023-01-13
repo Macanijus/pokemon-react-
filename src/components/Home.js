@@ -28,7 +28,6 @@ const Home = ({ getRandom }) => {
     setCurrentPage(pageNumber);
   };
 
-
   const changeHandler = (e) => {
     setInput(e.target.value);
   };

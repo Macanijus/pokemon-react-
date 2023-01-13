@@ -57,15 +57,20 @@ button {
   width: 116px;
   height: 116px;
 }
+.versus {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
 
 .versustwo {
   display: flex;
   flex-direction: column;
   min-width: 30vw;
+  margin-top: 5%;
 }
 
 .pokedex {
-  max-width: 750px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -128,4 +133,8 @@ button:hover {
 }
 .search-input {
   border-radius: 10%;
+}
+
+.fight {
+  margin-top: 2%;
 }
