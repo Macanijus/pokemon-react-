@@ -5,7 +5,8 @@
 }
 
 .app {
-  background: #3b4cca;
+  background-image: url("https://cutewallpaper.org/cdn-cgi/mirage/dd19f2d06ebc24f541f142b37b4289ffa7de722a7607e39984c5c6dd4ce8defd/1280/21/pokemon-landscape-background/I-split-the-original-8-bit-Landscape-into-9-images-for-.jpg");
+  background-size: 100%;
   color: white;
 }
 
@@ -32,33 +33,15 @@
   min-width: 22vw;
 }
 
-.home {
-  padding-top: 3%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
 .choose {
   width: 100vw;
   text-align: center;
   margin-bottom: 20px;
 }
 
-.search-input {
-  margin: 10px;
-}
-
 button {
   cursor: pointer;
   margin: 3px;
-}
-
-.versus {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }
 
 .fightdiv {
@@ -79,4 +62,70 @@ button {
   display: flex;
   flex-direction: column;
   min-width: 30vw;
+}
+
+.pokedex {
+  max-width: 750px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.pokedex img {
+  width: 120px;
+}
+
+.onePoke {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+/* pagination */
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  flex-wrap: nowrap;
+}
+
+.pagination-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0px;
+}
+
+.pagination-link {
+  text-decoration: none;
+  color: #000;
+  font-size: 0.7rem;
+}
+
+.pagination-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0px;
+}
+
+button:hover {
+  padding: 10px 10px;
+  background-color: #fff;
+  border: 1px solid #000;
+  font-size: 1rem;
+  border-radius: 10%;
+  cursor: pointer;
+}
+.search-input {
+  border-radius: 10%;
 }
