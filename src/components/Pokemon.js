@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Link, useLoaderData } from "react-router-dom";
 import axios from "axios";
 import Combatant from "./Combatant";
+import "../App.css";
 
 const Pokemon = ({ getRandom }) => {
   const { id } = useParams();
@@ -134,33 +135,41 @@ const Pokemon = ({ getRandom }) => {
   useEffect(() => {}, [pic]);
 
   return (
-    <div className="fightdiv">
-      <div className="versus">
-        <Combatant pokemon={pokemon} pic={pic} />
-        <div className="versustwo">
-          <h2>VERSUS </h2>
-          <button className="pic" onClick={() => fight()}>
-            Fight!
-          </button>
-          {fightar.map((element, index) =>
-            index !== fightar.length - 1 ? <p>{element}</p> : <h2>{element}</h2>
-          )}
+    <div className="flex-two">
+      <div className="fightdiv">
+        <h1 className="fight">FIGHT</h1>
+        <div className="versus">
+          <Combatant pokemon={pokemon} pic={pic} />
+          <div className="versustwo">
+            <h2>VERSUS </h2>
+            <button className="pic" onClick={() => fight()}>
+              Fight!
+            </button>
+            {fightar.map((element, index) =>
+              index !== fightar.length - 1 ? (
+                <p>{element}</p>
+              ) : (
+                <h2>{element}</h2>
+              )
+            )}
+          </div>
+          <Combatant pokemon={pokemon2} pic={pic2} />
         </div>
-        <Combatant pokemon={pokemon2} pic={pic2} />
-      </div>
-      <div>
-        <Link to={`/pokemon/${id}/name`}>
-          <button className="pic">Name</button>
-        </Link>
-        <Link to={`/pokemon/${id}/type`}>
-          <button className="pic">Type</button>
-        </Link>
-        <Link to={`/pokemon/${id}/base`}>
-          <button className="pic">Base</button>
-        </Link>
-        <Link to={`/`}>
-          <button className="pic">Back to all Pokemons</button>
-        </Link>
+
+        <div>
+          <Link to={`/pokemon/${id}/name`}>
+            <button className="pic">Name</button>
+          </Link>
+          <Link to={`/pokemon/${id}/type`}>
+            <button className="pic">Type</button>
+          </Link>
+          <Link to={`/pokemon/${id}/base`}>
+            <button className="pic">Base</button>
+          </Link>
+          <Link to={`/`}>
+            <button className="pic">Back to all Pokemons</button>
+          </Link>
+        </div>
       </div>
     </div>
   );
